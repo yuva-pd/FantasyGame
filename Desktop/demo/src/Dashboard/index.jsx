@@ -73,11 +73,8 @@ const index = () => {
         onPress={() => {
           handleCardPress(index), setEnable(!enable);
         }}>
-        {/* <Image source={{uri: urii}} style={{height: 33, width: 33}} /> */}
-        <Image
-          source={{uri: teamLogos[index]}}
-          style={{height: 33, width: 33}}
-        />
+        <Image source={{uri: urii}} style={{height: 33, width: 33}} />
+        
         <View>
           <Text
             style={{
@@ -105,11 +102,8 @@ const index = () => {
             Open Now Click onto Start
           </Text>
         </View>
-        {/* <Image source={{uri: uri}} style={{height: 33, width: 33}} /> */}
-        <Image
-          source={{uri: teamLogos[index]}}
-          style={{height: 33, width: 33}}
-        />
+        <Image source={{uri: uri}} style={{height: 33, width: 33}} />
+        
       </TouchableOpacity>
     );
   };
