@@ -1,0 +1,61 @@
+import { StyleSheet } from "react-native";
+export const styles = StyleSheet.create({
+  container: {
+          padding: 5,
+          backgroundColor: '#3F79BA',
+          paddingTop: 27,
+          color: 'white',
+          paddingBottom: 27,
+          paddingLeft: 70,
+          fontSize: 20,
+          fontWeight: '600',
+        },
+  textbutton:{
+          width: '90%',
+          backgroundColor: '#3F79BA',
+          marginLeft: 20,
+          padding: 13,
+          color: 'white',
+          fontSize: 20,
+          paddingLeft: 130,
+          borderRadius: 25,
+          marginTop: 25,
+        },
+  image:{height: 33, width: 33},
+  clickbutton{
+          alignSelf: 'center',
+          marginBottom: 13,
+          color: 'lightpink',
+          fontSize: 15,
+            },
+  texthead:{
+              alignSelf: 'center',
+              marginBottom: 13,
+              fontSize: 15,
+              fontWeight: '600',
+            },
+  subcontainer:{
+          backgroundColor: '#FFFFFFE8',
+          borderRadius: 6,
+          width: '90%',
+          alignItems: 'center',
+          justifyContent: 'space-around',
+          flexDirection: 'row',
+          paddingHorizontal: 15,
+          paddingVertical: 10,
+          paddingTop: 20,
+          paddingLeft: 23,
+          shadowColor: '#DCDCDC',
+          shadowOffset: {
+            width: 3,
+            height: 3,
+          },
+          shadowOpacity: 2,
+          shadowRadius: 5,
+          elevation: 30,
+          backgroundColor: 'white',
+          marginLeft: 18,
+          marginTop: 13,
+        }
+  
+})
