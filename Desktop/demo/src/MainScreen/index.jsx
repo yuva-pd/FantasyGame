@@ -2,23 +2,22 @@ import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
-  Button,
   FlatList,
   TouchableOpacity,
-  StyleSheet,
   ScrollView,
   Image,
-  Alert,
 } from 'react-native';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
 import {useNavigation} from '@react-navigation/native';
+import {styles} from './styles';
+//functional component
 const index = () => {
+  // State variables using useState hook
   const [selectedPlayers, setSelectedPlayers] = useState([]);
   const [totalCredits, setTotalCredits] = useState(100);
   const [mplayersData, setmPlayersData] = useState([]);
-  const [playersData, setPlayersData] = useState([]);
-
+  // useEffect hook to fetch data
   useEffect(() => {
     const fetchPlayersData = async () => {
       try {
@@ -34,20 +33,25 @@ const index = () => {
 
     fetchPlayersData();
   }, []);
+  // Nested functional component
   const Dashboardm = ({playersData}) => {
+    // State variables specific to this nested component
     const [selectedPlayers, setSelectedPlayers] = useState([]);
     const [totalCredits, setTotalCredits] = useState(100);
     const [disabledTeams, setDisabledTeams] = useState({});
     const [playerresetbutton, setPlayerresetbutton] = useState(false);
+    //nested functional
+    //team limit reach like 7
     const isTeamLimitReached = teamName => {
       const countPlayersFromTeam = selectedPlayers.filter(
         selectedPlayer => selectedPlayer.team_name === teamName,
       ).length;
-      return countPlayersFromTeam >= 7; // Modify the limit as needed
+      return countPlayersFromTeam >= 7;
     };
+    // filter by role name
     const filterPlayersByRole = role =>
       playersData.filter(player => player.role === role);
-
+    //habdling the pplayers
     const handlePlayerSelection = player => {
       const isPlayerSelected = selectedPlayers.some(
         selectedPlayer => selectedPlayer.id === player.id,
@@ -143,20 +147,15 @@ const index = () => {
           });
           return;
         }
-        // if (teamLimitReached) {
-        //   setDisabledTeams(prevDisabledTeams => ({
-        //     ...prevDisabledTeams,
-        //     [player.team_name]: true,
-        //   }));
-        // }
       }
     };
-
+    //count of selected player by role
     const countSelectedPlayersByRole = role => {
       return selectedPlayers.filter(
         selectedPlayer => selectedPlayer.role === role,
       ).length;
     };
+
     const renderPlayersByRole = role => {
       const players = filterPlayersByRole(role);
       const countSelectedPlayersByRole = () => {
@@ -185,8 +184,7 @@ const index = () => {
             ? setPlayerresetbutton(teamLimitReached || roleLimitReached)
             : null;
         }
-        // const bowlers =
-        //   role === 'Batsman' && countSelectedPlayersByRole('Batsman') >= 7;
+
         return (
           <TouchableOpacity
             onPress={() => {
@@ -198,7 +196,7 @@ const index = () => {
             style={[
               styles.playerItem,
               isSelected && {backgroundColor: '#D5E9FF'},
-              (roleLimitReached || teamLimitReached) && {opacity: 0.5}, // Change background color for selected players
+              (roleLimitReached || teamLimitReached) && {opacity: 0.5},
             ]}>
             <View style={styles.playerInfo}>
               <View style={styles.playerNameContainer}>
@@ -432,89 +430,8 @@ const index = () => {
   return (
     <View style={{flex: 1, backgroundColor: '#2C358A'}}>
       <Dashboardm playersData={mplayersData} />
-      {/* <Dashboardm playersData={playersData} /> */}
     </View>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 20,
-  },
-  scrollView: {
-    flexGrow: 1,
-    width: '100%',
-    marginBottom: 60, // Adjust this value based on your button and text height
-  },
-  footer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: '#fff',
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    borderTopWidth: 1,
-    borderTopColor: '#ccc',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    bottom: 60,
-  },
-  totalCredits: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  roleName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 5,
-  },
-  playerItem: {
-    backgroundColor: '#f0f0f0',
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5,
-  },
-  playerName: {
-    fontSize: 33,
-    fontWeight: 'bold',
-  },
-  playerDetails: {
-    fontSize: 14,
-  },
-  playerInfo: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  playerNameContainer: {
-    flex: 1,
-  },
-  playerName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  playerRole: {
-    fontSize: 14,
-    color: '#666',
-  },
-  teamInfo: {
-    alignItems: 'center',
-  },
-  teamName: {
-    fontSize: 14,
-    marginRight: 5,
-  },
-  teamLogo: {
-    width: 20, // Adjust the width as needed
-    height: 20, // Adjust the height as needed
-    resizeMode: 'contain',
-    marginBottom: 13,
-  },
-});
 
 export default index;
