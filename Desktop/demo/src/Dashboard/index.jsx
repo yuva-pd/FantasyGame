@@ -3,12 +3,14 @@ import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import axios from 'axios';
-
 const index = () => {
+  //state variables
   const [playerdata, setPlayersData] = useState([]);
   const [teamLogos, setTeamLogos] = useState([]);
   const [enablee, setEnablee] = useState([false, false, false]);
+  const [enable, setEnable] = useState(false);
 
+//useeffect hook
   useEffect(() => {
     const fetchPlayersData = async () => {
       try {
@@ -25,31 +27,21 @@ const index = () => {
 
     fetchPlayersData();
   }, []);
+  //navigation 
   const navigation = useNavigation();
+  //functions
   const handleCardPress = index => {
     const updatedEnable = [...enablee]; // Create a copy of enable state
     updatedEnable[index] = !updatedEnable[index]; // Toggle the clicked card's state
     setEnablee(updatedEnable); // Update the state
   };
 
-  const [enable, setEnable] = useState(false);
   const renderCard = index => {
     return (
-      // <TouchableOpacity
-      //   style={{
-      //     // ... Your card styles
-      //   }}
-      //   onPress={() => handleCardPress(index)}
-      // >
-      //   <Image source={{ uri: teamLogos[index] }} style={{ height: 33, width: 33 }} />
-      //   {/* ... Rest of your card content */}
-      // </TouchableOpacity>
       <TouchableOpacity
         style={{
           backgroundColor: '#FFFFFFE8',
           borderRadius: 6,
-
-          // height: '17%',
           width: '90%',
           alignItems: 'center',
           justifyContent: 'space-around',
