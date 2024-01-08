@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import axios from 'axios';
+import {styles} from './styles.js'
 const index = () => {
   //state variables
   const [playerdata, setPlayersData] = useState([]);
@@ -39,42 +40,15 @@ const index = () => {
   const renderCard = index => {
     return (
       <TouchableOpacity
-        style={{
-          backgroundColor: '#FFFFFFE8',
-          borderRadius: 6,
-          width: '90%',
-          alignItems: 'center',
-          justifyContent: 'space-around',
-          flexDirection: 'row',
-          paddingHorizontal: 15,
-          paddingVertical: 10,
-          paddingTop: 20,
-          paddingLeft: 23,
-          shadowColor: '#DCDCDC',
-          shadowOffset: {
-            width: 3,
-            height: 3,
-          },
-          shadowOpacity: 2,
-          shadowRadius: 5,
-          elevation: 30,
-          backgroundColor: 'white',
-          marginLeft: 18,
-          marginTop: 13,
-        }}
+        style={styles.subcontainer}
         onPress={() => {
           handleCardPress(index), setEnable(!enable);
         }}>
-        <Image source={{uri: urii}} style={{height: 33, width: 33}} />
+        <Image source={{uri: urii}} style={styles.image} />
         
         <View>
           <Text
-            style={{
-              alignSelf: 'center',
-              marginBottom: 13,
-              fontSize: 15,
-              fontWeight: '600',
-            }}>
+            style={styles.texthead}>
             T20 League{' '}
           </Text>
           <Text style={{alignSelf: 'center', marginBottom: 13, color: 'black'}}>
@@ -85,16 +59,11 @@ const index = () => {
             Perth Scorchers
           </Text>
           <Text
-            style={{
-              alignSelf: 'center',
-              marginBottom: 13,
-              color: 'lightpink',
-              fontSize: 15,
-            }}>
+            style={styles.clickbutton}>
             Open Now Click onto Start
           </Text>
         </View>
-        <Image source={{uri: uri}} style={{height: 33, width: 33}} />
+        <Image source={{uri: uri}} style={styles.image} />
         
       </TouchableOpacity>
     );
@@ -102,16 +71,7 @@ const index = () => {
   return (
     <View style={{flex: 1}}>
       <Text
-        style={{
-          padding: 5,
-          backgroundColor: '#3F79BA',
-          paddingTop: 27,
-          color: 'white',
-          paddingBottom: 27,
-          paddingLeft: 70,
-          fontSize: 20,
-          fontWeight: '600',
-        }}>
+        style={styles.container}>
         CRICKET FANTASY MATCHES
       </Text>
 
@@ -129,17 +89,7 @@ const index = () => {
                     navigation.navigate('MainScreen');
                   }}>
                   <Text
-                    style={{
-                      width: '90%',
-                      backgroundColor: '#3F79BA',
-                      marginLeft: 20,
-                      padding: 13,
-                      color: 'white',
-                      fontSize: 20,
-                      paddingLeft: 130,
-                      borderRadius: 25,
-                      marginTop: 25,
-                    }}>
+                    style={styles.textbutton}>
                     Pick Squad
                   </Text>
                 </TouchableOpacity>
